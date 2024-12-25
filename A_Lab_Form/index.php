@@ -119,7 +119,7 @@ if (isset($_POST['add'])) {
         </div>
         
         <!-- Image with bottom margin -->
-        <img src="img/images.png" alt="">
+        <img src="img/fdc.png" alt="">
         
         <h1>ڈاکٹر فرذانہ ڈائیگنوسٹاک سینٹر‎</h1>
         

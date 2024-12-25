@@ -271,10 +271,10 @@ if (isset($_POST['add'])) {
 </head>
 <body>
     <!-- Header: This will appear on each printed page -->
-    <div class="doc-header">
+    <!-- <div class="doc-header">
         <h1>Dr. Farzana's Diagnostic Centre</h1>
         <h2>Form Details</h2>
-    </div>
+    </div> -->
 
     <!-- Content Section where form details will be printed -->
     <div id="result" class="mt-4">
@@ -282,9 +282,9 @@ if (isset($_POST['add'])) {
     </div>
 
     <!-- Footer: This will appear on each printed page -->
-    <div class="footer">
+    <!-- <div class="footer">
         <p>Contact: Dr. Farzana Diagnostic Centre | Email: dr.farzanalab603@gmail.com | Phone: 0325-6063193</p>
-    </div>
+    </div> -->
 
     <!-- Print Button -->
     <div class="text-center mt-4">

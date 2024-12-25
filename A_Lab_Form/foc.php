@@ -37,12 +37,73 @@ if (isset($_POST['add'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Farzana's Diagnostic Centre</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://use.fontawesome.com/ccb21b5b72.js"></script>
     <script src="script.js"></script>
+    <style>
+        /* Print Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .btn-danger, .text-center, .container-fluid, form {
+        display: none; /* Hide buttons and form during print */
+    }
+
+    @page {
+        margin: 20mm;
+    }
+
+    .doc-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: white;
+        border-bottom: 2px solid #000;
+        font-size: 18px;
+        z-index: 999;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        background-color: white;
+        border-top: 2px solid #000;
+        z-index: 999;
+    }
+
+    #result {
+        margin-top: 80px;
+        margin-bottom: 40px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    #result h3 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    #result p {
+        margin: 5px 0;
+    }
+}
+    </style>
+
 </head>
 <body>
     <div class="container-fluid mt-3 doc" style="max-height:120px;">
@@ -52,7 +113,7 @@ if (isset($_POST['add'])) {
     </div>
     
     <!-- Image with bottom margin -->
-    <img src="img/images.png" alt="" >
+    <img src="img/fdc.png" alt="" >
     
     <h1>ڈاکٹر فرذانہ ڈائیگنوسٹاک سینٹر‎</h1>
     
@@ -150,5 +211,59 @@ if (isset($_POST['add'])) {
           <p class="text-center">Copyright &copy; Muhammad Affan Siddiqui</p>
         </div>
         </div>
+            <!-- Header: This will appear on each printed page -->
+    <div class="doc-header">
+        <h1>Dr. Farzana's Diagnostic Centre</h1>
+        <h2>Form Details</h2>
+    </div>
+
+    <!-- Content Section where form details will be printed -->
+    <div id="result" class="mt-4">
+        <!-- Form data will be inserted here after submission -->
+    </div>
+
+    <!-- Footer: This will appear on each printed page -->
+    <div class="footer">
+        <p>Contact: Dr. Farzana Diagnostic Centre | Email: dr.farzanalab603@gmail.com | Phone: 0325-6063193</p>
+    </div>
+
+    <!-- Print Button -->
+    <div class="text-center mt-4">
+        <button class="btn btn-danger" onclick="printDetails(event)">Print</button>
+    </div>
+ 
+    <script>
+        function printDetails(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data
+    const serialNumber = document.querySelector('[name="serial_number"]').value;
+    const date = document.querySelector('[name="date"]').value;
+    const name = document.querySelector('[name="name"]').value;
+    const age = document.querySelector('[name="age"]').value;
+    const sex = document.querySelector('[name="sex"]').value;
+    const investigation = document.querySelector('[name="investigation"]').value;
+    const referredBy = document.querySelector('[name="referred_dr"]').value;
+
+    // Create a result string to display all the details
+    let resultHTML = `
+        <h3>Form Details</h3>
+        <p><strong>Serial Number:</strong> ${serialNumber}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>Sex:</strong> ${sex}</p>
+        <p><strong>Investigation:</strong> ${investigation}</p>
+        <p><strong>Referred By:</strong> ${referredBy}</p>
+    `;
+
+    // Display the result in the 'result' div
+    document.getElementById('result').innerHTML = resultHTML;
+
+    // Trigger the print dialog
+    window.print();
+}
+
+    </script>
 </body>
 </html>
